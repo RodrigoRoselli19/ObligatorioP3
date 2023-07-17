@@ -16,6 +16,6 @@ namespace ObligatorioP3.datos
         public DbSet<Salas>? Salas { get; set; }
         public DbSet<Usuarios>? Usuarios { get; set;}
         public DbSet<Cine>? cines { get; set; }
-        
+        public DbSet<Reservas>? reservas { get; set;}        
     }
 }

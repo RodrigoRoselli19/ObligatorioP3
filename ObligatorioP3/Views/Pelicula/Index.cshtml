@@ -1,0 +1,134 @@
+﻿@model IEnumerable<ObligatorioP3.Models.Peliculas>
+
+@{
+    ViewData["Title"] = "Lista de Peliculas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .title-container {
+        margin-bottom: 20px;
+    }
+
+        .title-container h3 {
+            color: black;
+        }
+
+    .create-button {
+        text-align: right;
+        margin-bottom: 20px;
+    }
+
+    .table-container {
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 10px;
+    }
+
+        .table-container table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table-container th {
+            background-color: #f5f5f5;
+            color: black;
+            font-weight: bold;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .table-container td {
+            padding: 8px;
+        }
+
+    .edit-button {
+        background-color: blue;
+        color: #fff;
+        margin-right: 5px;
+    }
+
+    .delete-button {
+        background-color: #dc3545;
+        color: #fff;
+    }
+</style>
+<div class="title-container">
+    <div class="row">
+        <div class="col-4">
+            <h3>Lista de Peliculas</h3>
+        </div>
+        <div class="col-3 create-button">
+            <a asp-action="Crear" class="btn btn-primary form-control" style="background-color: forestgreen; color: #fff;">Crear película</a>
+        </div>
+        
+    </div>
+    <div class="row">
+        <div class="col-5 search-container">
+            <form action="@Url.Action("Buscar", "Pelicula")" method="post">
+                <div class="form-group">
+                    <input type="text" name="titulo" class="form-control" placeholder="Buscar película por título">
+                </div>
+                <div class="form-group">
+                    <br>
+                    <button type="submit" class="btn btn-primary" style="background-color: blue; color: #fff;">Buscar</button>
+
+                </div>
+            </form>
+        </div>
+        <div class="col-5 search-container">
+            <form action="@Url.Action("BuscarGenero", "Pelicula")" method="post">
+                <input type="text" name="genero" class="form-control" placeholder="Buscar película por genero">
+             <br> 
+                <button type="submit" class="btn btn-primary" style="background-color: blue; color: #fff;">Buscar</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="table-container">
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-striped">
+            <tr>
+                <th>
+                    Id Pelicula
+                </th>
+                <th>
+                    Titulo
+                </th>
+                <th>
+                    Genero
+                </th>
+                <th>
+                    Descripción
+                </th>
+                <th>
+                    Acciones
+                </th>
+            </tr>
+            @foreach (var pelicula in Model)
+            {
+                <tr>
+                    <td>@pelicula.PeliculasId</td>
+                    <td>@pelicula.Titulo</td>
+                    <td>@pelicula.Genero</td>
+                    <td>@pelicula.Des_Pel</td>
+                    <td>
+                        <a class="btn edit-button" asp-action="Editar" asp-route-id="@pelicula.PeliculasId" style="background-color: blue; color: #fff;">Editar</a>
+                        <a class="btn delete-button" asp-action="Borrar" asp-route-id="@pelicula.PeliculasId" style="background-color: red; color: #fff;">Borrar</a>
+
+                    </td>
+                </tr>
+            }
+            
+        </table>
+        
+    }
+    else
+    {
+        <div class="no-results">No se encontraron películas.</div>
+    }
+    <div class="return-button-container">
+        <a class="btn btn-primary" href="@Url.Action("Index", "Pelicula")">Volver a la lista original</a>
+    </div>
+</div>

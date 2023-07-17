@@ -19,7 +19,7 @@ namespace ObligatorioP3.Models
         [Column("Genero_Pel")]
         public string? Genero { get; set; }
         [Required]
-        [StringLength(100)]
+        [StringLength(2000)]
         [Column("Des_Pel")]
         public string? Des_Pel { get; set; }
 

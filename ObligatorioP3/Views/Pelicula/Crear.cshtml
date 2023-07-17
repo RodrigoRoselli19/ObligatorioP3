@@ -1,0 +1,70 @@
+﻿@model ObligatorioP3.Models.Peliculas
+
+@{
+    ViewData["Title"] = "Crear Pelicula";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .form-container {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+        .form-container h3 {
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            color: black;
+        }
+
+        .form-container .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-container label {
+            font-weight: bold;
+            color: black;
+        }
+
+        .form-container .form-control {
+            border-color: black
+        }
+
+        .form-container .text-danger {
+            color: black
+        }
+
+        .form-container .btn-container {
+            text-align: right;
+            margin-top: 20px;
+        }
+
+            .form-container .btn-container a {
+                margin-right: 10px;
+            }
+</style>
+<div class="form-container">
+    <h3>Crear una nueva película</h3>
+    <form method="post" asp-action="Crear">
+        <div class="form-group">
+            <label asp-for="Titulo">Título</label>
+            <input asp-for="Titulo" class="form-control" />
+            <span asp-validation-for="Titulo" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Genero">Género</label>
+            <input asp-for="Genero" class="form-control" />
+            <span asp-validation-for="Genero" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Des_Pel">Descripción</label>
+            <input asp-for="Des_Pel" class="form-control" />
+            <span asp-validation-for="Des_Pel" class="text-danger"></span>
+        </div>
+        <div class="btn-container">
+            <a asp-action="Index" class="btn btn-secondary" style="background-color: green; color: #fff;">Volver a lista</a>
+            <button type="submit" class="btn btn-primary" style="background-color: darkblue; color: #fff;">Crear</button>
+        </div>
+    </form>
+</div>
